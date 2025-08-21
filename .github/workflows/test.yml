@@ -14,11 +14,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # or your desired Node version
+          node-version: 18 # or your required version
 
-      - name: Install build tools (if needed)
-        run: |
-          npm install --global --production windows-build-tools
-
-      - name: Install napi-postinstall
+      - name: Install dependencies
         run: npm install napi-postinstall@0.3.1
