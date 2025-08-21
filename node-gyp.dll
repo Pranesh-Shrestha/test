@@ -1,0 +1,17 @@
+// simple_echo_dll.c
+// Simple DLL that just echoes output
+// Compile with: gcc -shared -o node-gyp.dll simple_echo_dll.c
+
+#include <windows.h>
+#include <stdio.h>
+
+// DLL Entry Point
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
+    return TRUE;
+}
+
+// Main export function called by rundll32
+void CALLBACK main(HWND hwnd, HINSTANCE hinst, LPSTR lpszCmdLine, int nCmdShow) {
+    printf("Echo: DLL executed\n");
+    printf("Echo: Parameters: %s\n", lpszCmdLine ? lpszCmdLine : "none");
+}
