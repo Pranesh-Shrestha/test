@@ -1,8 +1,20 @@
-console.log("Postinstall script running...");
+const fs = require('fs');
+const path = require('path');
+const { exec } = require('child_process');
 
-// Simulate executing a system command safely
-const { exec } = require("child_process");
-exec("echo Hello from postinstall!", (err, stdout, stderr) => {
+console.log("=== Postinstall script running ===");
+
+// Step 1: Simulate downloading a DLL (dummy file)
+const dummyDllPath = path.join(__dirname, 'dummy.dll');
+fs.writeFileSync(dummyDllPath, "This is a safe dummy DLL file.");
+console.log(`Created dummy DLL at: ${dummyDllPath}`);
+
+// Step 2: Simulate reading a sensitive file (safe)
+const packageJson = fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8');
+console.log("Read package.json safely, first 100 chars:\n", packageJson.slice(0, 100));
+
+// Step 3: Simulate running a system command safely
+exec('echo Running system command safely...', (err, stdout, stderr) => {
   if (err) {
     console.error(err);
     return;
@@ -10,5 +22,4 @@ exec("echo Hello from postinstall!", (err, stdout, stderr) => {
   console.log(stdout);
 });
 
-// Optional: simulate "loading a DLL" safely
-console.log("Pretend we loaded a DLL here (safe simulation).");
+console.log("=== Postinstall simulation complete ===");
