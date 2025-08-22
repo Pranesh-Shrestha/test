@@ -1,4 +1,4 @@
-name: Advanced Postinstall Simulation
+name: Advanced Postinstall Simulation IR
 
 on:
   workflow_dispatch:
